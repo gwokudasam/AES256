@@ -1,0 +1,344 @@
+application {
+  config {
+    baseName famethe,
+    applicationType microservice,
+    authenticationType jwt
+    packageName com.com.famethe.platform,
+    prodDatabaseType mariadb,
+    cacheProvider hazelcast,
+    buildTool maven,
+    clientFramework angular,
+    useSass true,
+    testFrameworks [protractor],
+	nativeLanguage en,
+    languages [en, de, ru]
+  }
+  entities *
+}
+
+DEFAULT_MIN_LENGTH = 2
+DEFAULT_MAX_LENGTH = 64
+
+entity Agent {
+	name String required maxlength(192),
+	firstName String required maxlength(64),
+	lastName String required maxlength(64),
+	phone String maxlength(16),
+	email String maxlength(64),
+	suburb String maxlength(64),
+	street String maxlength(64),
+	city String maxlength(64),
+	type String maxlength(64),
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	createdBy String maxlength(32),
+	updatedBy String maxlength(32),
+	version Long min(0),
+	status EntityStatus
+}
+
+
+enum EntityStatus {
+    ACTIVE, BLOCKED, DELETED, PENDING
+}
+entity AgentClassOfService {
+	name String maxlength(64),
+	description String maxlength(64),
+	payBillGroup String maxlength(64),
+	paymentChannelGroup String maxlength(64),
+	smsNotification Boolean,
+	enforceOperator Boolean,
+	sale Boolean,
+	saleCashBack Boolean,
+	balanceEnquiry Boolean,
+	miniStatement Boolean,
+	batchCutoff Boolean,
+	batchAudit Boolean,
+	lastTransaction Boolean,
+	dayTransactions Boolean,
+	payBill Boolean,
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	version Long min(0)
+}
+
+entity AgentDirector {
+	firstName String required maxlength(64),
+	lastName String required maxlength(64),
+	idNumber String required maxlength(16),
+	mobile String maxlength(16),
+	email String,
+	createdBy String maxlength(32),
+    updatedBy String maxlength(32)
+}
+
+entity Bank {
+	name String required maxlength(64),
+	bin String required maxlength(6),
+	createdAt Instant,
+	updatedAt Instant,
+	version Long min(0),
+	deleted Boolean,
+	active Boolean,
+	createdBy String maxlength(32),
+	updatedBy String maxlength(32)
+}
+
+entity Biller {
+	company String maxlength(64),
+	account String maxlength(16),
+	landline String maxlength(16),
+	cellphone String maxlength(16),
+	email String maxlength(64),
+	address String maxlength(255),
+	logo String maxlength(255),
+	visible Boolean,
+	accountManagerId Integer,
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	version Long min(0),
+}
+
+entity Company {
+	name String required maxlength(192),
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	version Long min(0),
+	createdBy String maxlength(32),
+   	updatedBy String maxlength(32)
+}
+
+entity Device {
+	imei String maxlength(16),
+	name String maxlength(64),
+	status EntityStatus,
+	version Long min(0),
+	terminalId String maxlength(8),
+	imsi String maxlength(32),
+	serialNumber String maxlength(64),
+	createdAt Instant,
+	updatedAt Instant,
+	posType String maxlength(16),
+	softwareVersion String maxlength(16),
+	createdBy String maxlength(32),
+    updatedBy String maxlength(32)
+}
+
+entity ExportFile {
+	createdAt Instant,
+	filename String maxlength(64),
+	filePath String maxlength(128),
+	url String maxlength(128),
+	updatedAt Instant,
+	deleted Boolean,
+	version Long min(0),
+	createdBy String maxlength(32),
+   	updatedBy String maxlength(32)
+}
+
+entity FeeAndCommission {
+	name String maxlength(32),
+	description String maxlength(128),
+	currency String maxlength(4),
+	country String maxlength(4),
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	version Long min(0),
+	createdBy Integer,
+	updatedBy Integer
+}
+
+entity FeeTransaction {
+	createdAt Instant,
+	amount BigDecimal,
+	description String maxlength(255),
+	balance BigDecimal,
+	deleted Boolean,
+	updatedAt Instant,
+	createdBy String maxlength(32),
+   	updatedBy String maxlength(32),
+   	version Long min(0)
+}
+
+entity Licence {
+	agents Integer,
+	billers Integer,
+	products Integer,
+	devices Integer,
+	company String maxlength(32),
+	currency String maxlength(1),
+	currencyCode String maxlength(4),
+	extension String maxlength(4),
+	licenceVersion String maxlength(4),
+	logoUrl String maxlength(255),
+	phone String maxlength(16),
+	email String maxlength(64),
+	domain String maxlength(128),
+	street String maxlength(64),
+	city String maxlength(64),
+	country String maxlength(2),
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	active Boolean,
+	version Long min(0),
+}
+
+entity Operator {
+	firstName String maxlength(32),
+	lastName String maxlength(32),
+	cellphone String maxlength(16),
+	passcode String maxlength(4),
+	status String maxlength(8),
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	version Long min(0),
+	active Boolean
+}
+
+entity PaymentChannel {
+	name String maxlength(64),
+	description String maxlength(255),
+	type String maxlength(16),
+	phone Boolean,
+	pin Boolean,
+	active Boolean,
+	apiUrl String,
+	emv Boolean
+}
+
+entity Product {
+	name String maxlength(32),
+	description String maxlength(128),
+	visible Boolean,
+	account String maxlength(16),
+	balance BigDecimal,
+	commission BigDecimal,
+	voucherLabel String maxlength(32),
+	billIdLabel String maxlength(32),
+	billIdFormat String maxlength(64),
+	billIdMask String maxlength(32),
+	apiUrl String maxlength(1024),
+	/** allows the application to include a client phone number for an sms receipt for payments made through cash. if payment from account, this will be an additional sms than that from the platform */
+	clientSms Boolean,
+	amount Boolean,
+	payBillGroup String maxlength(64),
+	createdAt Instant,
+   	updatedAt Instant
+}
+
+entity Profile {
+	description String maxlength(128),
+	isFeeInclusive Boolean,
+	minAmount BigDecimal,
+	maxAmount BigDecimal,
+	profileType String maxlength(16),
+	feePercent BigDecimal,
+	feeFixed BigDecimal,
+	taxPercent BigDecimal,
+	taxFixed BigDecimal,
+	createdAt Instant,
+	updatedAt Instant,
+	deleted Boolean,
+	version Long min(0),
+}
+
+entity Sms {
+	date Instant,
+	remoteId String maxlength(32),
+	source String maxlength(32),
+	recipient String maxlength(16),
+	description String maxlength(255),
+	status String maxlength(32),
+	provider String maxlength(32),
+	sender String maxlength(32),
+	content String maxlength(1024),
+	createdAt Instant,
+    updatedAt Instant,
+    createdBy String maxlength(32),
+   	updatedBy String maxlength(32)
+}
+
+entity TaxTransaction {
+	amount BigDecimal,
+	description String maxlength(255),
+	balance BigDecimal,
+	createdAt Instant,
+    updatedAt Instant,
+    createdBy String maxlength(32),
+    updatedBy String maxlength(32)
+}
+
+entity Transaction {
+    createdAt Instant,
+    updatedAt Instant,
+	/** the status of the transaction */
+	status String maxlength(32),
+	/** transaction amount being debited */
+	debit BigDecimal,
+	/** transaction amount being credited */
+	credit BigDecimal,
+	/** the transaction amount as entered by pos user */
+	amount BigDecimal,
+	description String,
+	/** the corresponding debit or debit */
+	counterTransactionId Long,
+	terminalId String maxlength(16),
+	currency String maxlength(4),
+	/** This is the bank associated with the card number(bin) in the list of card_bins
+ */
+	responseCode String maxlength(2),
+	responseDescription String maxlength(255),
+	rrn String maxlength(16)
+}
+
+entity TransactionType {
+	name String required maxlength(32),
+	code String maxlength(2),
+	description String maxlength(128),
+	createdAt Instant,
+	updatedAt Instant,
+	active Boolean,
+	deleted Boolean,
+	version Long min(0)
+}
+
+
+// Relations
+relationship ManyToOne {
+	Agent{agentClassOfService} to AgentClassOfService{agent}
+	AgentDirector{agent} to Agent
+	Agent{company} to Company
+	Device{agent} to Agent
+	FeesTransaction{transaction required} to Transaction
+	Operator{agent} to Agent
+	Product{biller required} to Biller
+	Product{feesAndCommissions} to FeeAndCommission
+	Profile{feesAndCommissions} to FeeAndCommission
+	Profile{transactionTypes} to TransactionType
+    Profile{agentClassOfService} to AgentClassOfService
+	TaxTransaction{transaction required} to Transaction
+	Transaction{transactionType required} to TransactionType
+	Transaction{biller} to Biller
+	Transaction{product} to Product
+	Transaction{agent} to Agent
+	Transaction{device} to Device
+	Transaction{operator} to Operator
+	Transaction{bank} to Bank
+	Transaction{paymentChannel} to PaymentChannel
+	Transaction{counterTransactionId} to Transaction
+}
+
+
+paginate Agent, AgentDirector, Bank, Biller, Company, Device, ExportFile, FeeAndCommission, FeeTransaction, Licence ,Operator, PaymentChannel, Profile, Product, Sms, TaxTransaction, Transaction, TransactionType with pagination
+service all with serviceImpl
+
+
+
+
