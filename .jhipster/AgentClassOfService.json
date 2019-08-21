@@ -1,0 +1,120 @@
+{
+    "name": "AgentClassOfService",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 64
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 64
+        },
+        {
+            "fieldName": "payBillGroup",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 64
+        },
+        {
+            "fieldName": "paymentChannelGroup",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 64
+        },
+        {
+            "fieldName": "smsNotification",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "enforceOperator",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sale",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "saleCashBack",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "balanceEnquiry",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "miniStatement",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "batchCutoff",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "batchAudit",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "lastTransaction",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "dayTransactions",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "payBill",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "version",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "agent",
+            "otherEntityRelationshipName": "agentClassOfService",
+            "relationshipName": "agent"
+        }
+    ],
+    "changelogDate": "20190821103440",
+    "entityTableName": "agent_class_of_service",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "famethe"
+    ]
+}
