@@ -1,0 +1,57 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "de",
+      "ru"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "com.com.famethe.platform",
+    "packageFolder": "com/com/famethe/platform",
+    "prodDatabaseType": "mariadb",
+    "searchEngine": false,
+    "serviceDiscoveryType": "eureka",
+    "skipClient": true,
+    "testFrameworks": [
+      "protractor"
+    ],
+    "websocket": false,
+    "baseName": "famethe",
+    "applicationType": "microservice",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "buildTool": "maven",
+    "jhipsterVersion": "6.2.0",
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "serverPort": "8081"
+  },
+  "entities": [
+    "Agent",
+    "AgentClassOfService",
+    "AgentDirector",
+    "Bank",
+    "Biller",
+    "Company",
+    "Device",
+    "ExportFile",
+    "FeeAndCommission",
+    "FeeTransaction",
+    "Licence",
+    "Operator",
+    "PaymentChannel",
+    "Product",
+    "Profile",
+    "Sms",
+    "TaxTransaction",
+    "Transaction",
+    "TransactionType"
+  ]
+}

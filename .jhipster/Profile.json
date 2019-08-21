@@ -1,0 +1,103 @@
+{
+    "name": "Profile",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 128
+        },
+        {
+            "fieldName": "isFeeInclusive",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "minAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "maxAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "profileType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 16
+        },
+        {
+            "fieldName": "feePercent",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "feeFixed",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "taxPercent",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "taxFixed",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "createdAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "version",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "feeAndCommission",
+            "otherEntityRelationshipName": "profile",
+            "relationshipName": "feesAndCommissions",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "profile",
+            "relationshipName": "transactionTypes",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "agentClassOfService",
+            "otherEntityRelationshipName": "profile",
+            "relationshipName": "agentClassOfService",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190821103235",
+    "entityTableName": "profile",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "famethe"
+    ]
+}

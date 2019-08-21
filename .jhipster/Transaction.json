@@ -1,0 +1,164 @@
+{
+    "name": "Transaction",
+    "fields": [
+        {
+            "fieldName": "createdAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedAt",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "javadoc": "the status of the transaction",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 32
+        },
+        {
+            "fieldName": "debit",
+            "javadoc": "transaction amount being debited",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "credit",
+            "javadoc": "transaction amount being credited",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "amount",
+            "javadoc": "the transaction amount as entered by pos user",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "counterTransactionId",
+            "javadoc": "the corresponding debit or debit",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "terminalId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 16
+        },
+        {
+            "fieldName": "currency",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 4
+        },
+        {
+            "fieldName": "responseCode",
+            "javadoc": "This is the bank associated with the card number(bin) in the list of card_bins",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2
+        },
+        {
+            "fieldName": "responseDescription",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 255
+        },
+        {
+            "fieldName": "rrn",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 16
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transactionType",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipValidateRules": "required",
+            "relationshipName": "transactionType",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "biller",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "biller",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "product",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "agent",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "agent",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "device",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "device",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "operator",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "operator",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bank",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "bank",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "paymentChannel",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "paymentChannel",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "transaction",
+            "otherEntityRelationshipName": "transaction",
+            "relationshipName": "counterTransactionId",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190821103238",
+    "entityTableName": "transaction",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "famethe"
+    ]
+}
